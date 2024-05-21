@@ -1,12 +1,8 @@
-.container {
-  margin-top: 20px;
+.feedback {
+  margin: 20px auto;
+  padding: 20px;
 }
 
-.header {
-  color: #333;
-}
-
-.stat {
-  font-size: 18px;
-  color: black;
+.feedbackItem {
+  margin: 5px 0;
 }

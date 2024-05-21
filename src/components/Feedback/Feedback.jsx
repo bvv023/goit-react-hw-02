@@ -1,25 +1,22 @@
 import PropTypes from 'prop-types';
 import css from './Feedback.module.css';
 
-const Feedback = ({ feedback, totalFeedback, positiveFeedbackPercentage }) => (
-  <div className={css.container}>
-    <h2 className={css.header}>Feedback Statistics</h2>
-    <p className={css.stat}>Good: {feedback.good}</p>
-    <p className={css.stat}>Neutral: {feedback.neutral}</p>
-    <p className={css.stat}>Bad: {feedback.bad}</p>
-    <p className={css.stat}>Total Feedback: {totalFeedback}</p>
-    <p className={css.stat}>Positive Feedback: {positiveFeedbackPercentage}%</p>
+const Feedback = ({ good, neutral, bad, total, positive }) => (
+  <div className={css.feedback}>
+    <p className={css.feedbackItem}>Good: {good}</p>
+    <p className={css.feedbackItem}>Neutral: {neutral}</p>
+    <p className={css.feedbackItem}>Bad: {bad}</p>
+    <p className={css.feedbackItem}>Total: {total}</p>
+    <p className={css.feedbackItem}>Positive: {positive}%</p>
   </div>
 );
 
 Feedback.propTypes = {
-  feedback: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-  }).isRequired,
-  totalFeedback: PropTypes.number.isRequired,
-  positiveFeedbackPercentage: PropTypes.number.isRequired,
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positive: PropTypes.number.isRequired,
 };
 
 export default Feedback;

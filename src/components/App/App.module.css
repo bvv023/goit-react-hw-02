@@ -1,14 +1,4 @@
-.container {
+.app {
   text-align: center;
   padding: 20px;
-}
-
-.header {
-  color: #333;
-  font-size: 50px;
-}
-
-.description {
-  color: #333;
-  font-size: 20px;
 }

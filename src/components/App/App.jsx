@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import Options from '../Options/Options';
+import Description from '../Description/Description';
 import Feedback from '../Feedback/Feedback';
 import Notification from '../Notification/Notification';
+import Options from '../Options/Options';
 import css from './App.module.css';
 
 const App = () => {
@@ -14,8 +15,8 @@ const App = () => {
     localStorage.setItem('feedback', JSON.stringify(feedback));
   }, [feedback]);
 
-  const updateFeedback = feedbackType => {
-    setFeedback(prevFeedback => ({
+  const updateFeedback = (feedbackType) => {
+    setFeedback((prevFeedback) => ({
       ...prevFeedback,
       [feedbackType]: prevFeedback[feedbackType] + 1,
     }));
@@ -26,17 +27,26 @@ const App = () => {
   };
 
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
-  const positiveFeedbackPercentage = totalFeedback ? Math.round((feedback.good / totalFeedback) * 100) : 0;
+  const positiveFeedback = totalFeedback ? Math.round((feedback.good / totalFeedback) * 100) : 0;
 
   return (
-    <div className={css.container}>
-      <h1 className={css.header}>Sip Happens Café</h1>
-      <p className={css.description}>Please leave your feedback about our service by selecting one of the options below.</p>
-      <Options updateFeedback={updateFeedback} totalFeedback={totalFeedback} resetFeedback={resetFeedback} />
+    <div className={css.app}>
+      <Description />
+      <Options
+        onLeaveFeedback={updateFeedback}
+        onReset={resetFeedback}
+        totalFeedback={totalFeedback}
+      />
       {totalFeedback > 0 ? (
-        <Feedback feedback={feedback} totalFeedback={totalFeedback} positiveFeedbackPercentage={positiveFeedbackPercentage} />
+        <Feedback
+          good={feedback.good}
+          neutral={feedback.neutral}
+          bad={feedback.bad}
+          total={totalFeedback}
+          positive={positiveFeedback}
+        />
       ) : (
-        <Notification message="No feedback given yet." />
+        <Notification message="No feedback given" />
       )}
     </div>
   );
