@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Options from '../Options/Options';
 import Feedback from '../Feedback/Feedback';
 import Notification from '../Notification/Notification';
-import css from './App.css'
+import css from './App.module.css';
 
 const App = () => {
   const [feedback, setFeedback] = useState(() => {
@@ -29,9 +29,9 @@ const App = () => {
   const positiveFeedbackPercentage = totalFeedback ? Math.round((feedback.good / totalFeedback) * 100) : 0;
 
   return (
-    <div className={css.App}>
-      <h1 className={css.title}>Sip Happens Café</h1>
-      <p className={css.text}>Please leave your feedback about our service by selecting one of the options below.</p>
+    <div className={css.container}>
+      <h1 className={css.header}>Sip Happens Café</h1>
+      <p className={css.description}>Please leave your feedback about our service by selecting one of the options below.</p>
       <Options updateFeedback={updateFeedback} totalFeedback={totalFeedback} resetFeedback={resetFeedback} />
       {totalFeedback > 0 ? (
         <Feedback feedback={feedback} totalFeedback={totalFeedback} positiveFeedbackPercentage={positiveFeedbackPercentage} />
